@@ -72,3 +72,47 @@ Combined total      2
 ID                AFG
 Name: Afghanistan, dtype: object
 ```
+### Question 1
+Which country has won the most gold medals in summer games?
+
+*This function should return a single string value.*
+```html
+def answer_one():
+    return df.sort_values(by='Gold',ascending=False).index.values[0]
+```
+OUT:'United States'
+### Question 2
+Which country had the biggest difference between their summer and winter gold medal counts?
+
+*This function should return a single string value.*
+```html
+def answer_two():
+    df['minus']=df['Gold']-df['Gold.1']
+    return df.sort_values(by='minus',ascending=False).index.values[0]
+```
+Out: 'United States'
+### Question 3
+Which country has the biggest difference between their summer gold medal counts and winter gold medal counts relative to their total gold medal count?
+
+$$\frac{Summer~Gold - Winter~Gold}{Total~Gold}$$
+
+Only include countries that have won at least 1 gold in both summer and winter.
+
+*This function should return a single string value.*
+
+```html
+def answer_two():
+    df['minus']=df['Gold']-df['Gold.1']
+    return df.sort_values(by='minus',ascending=False).index.values[0]
+```
+
+
+
+## My Notes
+### Q1
+df=DataFrame([{‘A’:’11’,’B’:’12’},{‘A’:’111’,’B’:’121’},{‘A’:’1111’,’B’:’1211’}])
+print df.columns.size#列数 2
+print df.iloc[:,0].size#行数 3
+print df.ix[[0]].index.values[0]#索引值 0
+print df.ix[[0]].values[0][0]#第一行第一列的值 11
+print df.ix[[1]].values[0][1]#第二行第二列的值 121
