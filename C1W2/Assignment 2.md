@@ -93,7 +93,7 @@ def answer_two():
 Out: 'United States'
 ### Question 3
 Which country has the biggest difference between their summer gold medal counts and winter gold medal counts relative to their total gold medal count?
-
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
 $$\frac{Summer~Gold - Winter~Gold}{Total~Gold}$$
 
 Only include countries that have won at least 1 gold in both summer and winter.
@@ -101,18 +101,21 @@ Only include countries that have won at least 1 gold in both summer and winter.
 *This function should return a single string value.*
 
 ```html
-def answer_two():
-    df['minus']=df['Gold']-df['Gold.1']
-    return df.sort_values(by='minus',ascending=False).index.values[0]
+def answer_three():
+    df['percent']=(df['Gold']-df['Gold.1'])/df['Gold.2']
+    return df[(df['Gold'] > 0) & (df['Gold.1'] > 0)].sort_values(by='percent',ascending=False).index.values[0]
 ```
+Out[]: 'Bulgaria'
+### Question 4
+Write a function that creates a Series called "Points" which is a weighted value where each gold medal (`Gold.2`) counts for 3 points, silver medals (`Silver.2`) for 2 points, and bronze medals (`Bronze.2`) for 1 point. The function should return only the column (a Series object) which you created, with the country names as indices.
 
-
+*This function should return a Series named `Points` of length 146*
 
 ## My Notes
-### Q1
-df=DataFrame([{‘A’:’11’,’B’:’12’},{‘A’:’111’,’B’:’121’},{‘A’:’1111’,’B’:’1211’}])
-print df.columns.size#列数 2
-print df.iloc[:,0].size#行数 3
-print df.ix[[0]].index.values[0]#索引值 0
-print df.ix[[0]].values[0][0]#第一行第一列的值 11
-print df.ix[[1]].values[0][1]#第二行第二列的值 121
+### Q1  
+df=DataFrame([{‘A’:’11’,’B’:’12’},{‘A’:’111’,’B’:’121’},{‘A’:’1111’,’B’:’1211’}])  
+print df.columns.size#列数 2  
+print df.iloc[:,0].size#行数 3  
+print df.ix[[0]].index.values[0]#索引值 0  
+print df.ix[[0]].values[0][0]#第一行第一列的值 11  
+print df.ix[[1]].values[0][1]#第二行第二列的值 121  
