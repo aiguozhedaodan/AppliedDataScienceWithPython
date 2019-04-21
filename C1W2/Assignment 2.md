@@ -93,8 +93,6 @@ def answer_two():
 Out: 'United States'
 ### Question 3
 Which country has the biggest difference between their summer gold medal counts and winter gold medal counts relative to their total gold medal count?
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
-$$\frac{Summer~Gold - Winter~Gold}{Total~Gold}$$
 
 Only include countries that have won at least 1 gold in both summer and winter.
 
@@ -111,6 +109,101 @@ Write a function that creates a Series called "Points" which is a weighted value
 
 *This function should return a Series named `Points` of length 146*
 
+```html
+def answer_four():
+    df['point']=df['Gold.2']*3+df['Silver.2']*2+df['Bronze.2']
+    return df['point']
+```
+Out[]:
+Afghanistan                            2
+Algeria                               27
+Argentina                            130
+Armenia                               16
+Australasia                           22
+Australia                            923
+Austria                              569
+Azerbaijan                            43
+Bahamas                               24
+Bahrain                                1
+Barbados                               1
+Belarus                              154
+Belgium                              276
+Bermuda                                1
+Bohemia                                5
+Botswana                               2
+Brazil                               184
+British West Indies                    2
+Bulgaria                             411
+Burundi                                3
+Cameroon                              12
+Canada                               846
+Chile                                 24
+China                               1120
+Colombia                              29
+Costa Rica                             7
+Ivory Coast                            2
+Croatia                               67
+Cuba                                 420
+Cyprus                                 2
+
+Spain                                268
+Sri Lanka                              4
+Sudan                                  2
+Suriname                               4
+Sweden                              1217
+Switzerland                          630
+Syria                                  6
+Chinese Taipei                        32
+Tajikistan                             4
+Tanzania                               4
+Thailand                              44
+Togo                                   1
+Tonga                                  2
+Trinidad and Tobago                   27
+Tunisia                               19
+Turkey                               191
+Uganda                                14
+Ukraine                              220
+United Arab Emirates                   3
+United States                       5684
+Uruguay                               16
+Uzbekistan                            38
+Venezuela                             18
+Vietnam                                4
+Virgin Islands                         2
+Yugoslavia                           171
+Independent Olympic Participants       4
+Zambia                                 3
+Zimbabwe                              18
+Mixed team                            38
+Name: point, Length: 146, dtype: int64
+## Part 2
+For the next set of questions, we will be using census data from the [United States Census Bureau](http://www.census.gov). Counties are political and geographic subdivisions of states in the United States. This dataset contains population data for counties and states in the US from 2010 to 2015. [See this document](https://www2.census.gov/programs-surveys/popest/technical-documentation/file-layouts/2010-2015/co-est2015-alldata.pdf) for a description of the variable names.
+
+The census dataset (census.csv) should be loaded as census_df. Answer questions using this as appropriate.
+
+### Question 5
+Which state has the most counties in it? (hint: consider the sumlevel key carefully! You'll need this for future questions too...)
+
+*This function should return a single string value.*
+
+```html
+def answer_five():
+    census_df2=census_df[census_df['SUMLEV']==50]
+    return census_df2['STNAME'].value_counts().index[0]]
+```
+Out[]: 'Texas'
+### Question 6
+**Only looking at the three most populous counties for each state**, what are the three most populous states (in order of highest population to lowest population)? Use `CENSUS2010POP`.
+
+*This function should return a list of string values.*
+```html
+def answer_six():
+    census_df2=census_df[census_df['SUMLEV']==50]
+    df3=census_df2[['STNAME','CTYNAME','CENSUS2010POP']].sort_values('CENSUS2010POP',ascending=False).groupby(by='STNAME').head(3)
+    df4=df3.groupby(by='STNAME').sum().sort_values('CENSUS2010POP',ascending=False)[0:3]
+    return list(df4.index)
+```
 ## My Notes
 ### Q1  
 df=DataFrame([{‘A’:’11’,’B’:’12’},{‘A’:’111’,’B’:’121’},{‘A’:’1111’,’B’:’1211’}])  
@@ -119,3 +212,7 @@ print df.iloc[:,0].size#行数 3
 print df.ix[[0]].index.values[0]#索引值 0  
 print df.ix[[0]].values[0][0]#第一行第一列的值 11  
 print df.ix[[1]].values[0][1]#第二行第二列的值 121  
+### Question 5
+SUMLEV的值为40的行是州（STATE）的观测资料，SUMLEV的值为50的行是郡（COUNTY）的观测资料
+### Question 6
+df3=census_df2[['STNAME','CTYNAME','CENSUS2010POP']].sort_values('CENSUS2010POP',ascending=False).groupby(by='STNAME').head(3) # One STATE only have three most population country in df3 在df3中一个州只有三个人数最多的郡，groupby后执行的指令是按照group分组执行。同理groupby(by='STNAME').sum()，求和也是分组进行。
