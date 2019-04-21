@@ -29,7 +29,8 @@ df.head()
 ```
 
 
-| |# Summer|	Gold|	Silver|	Bronze|	Total|	# Winter|	Gold.1|	Silver.1|	Bronze.1|	Total.1|	# Games	|Gold.2	|Silver.2| Bronze.2|	Combined |total|	ID
+| |# Summer|	Gold|	Silver|	Bronze|	Total|# Winter|Gold.1|Silver.1|Bronze.1|Total.1|# Games|Gold.2|Silver.2| Bronze.2|Combined|total|ID|
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 |Afghanistan|	13	0	0	2	2	0	0	0	0	0	13	0	0	2	2	AFG
 |Algeria|	12	5	2	8	15	3	0	0	0	0	15	5	2	8	15	ALG
 |Argentina	|23	18	24	28	70	18	0	0	0	0	41	18	24	28	70	ARG
