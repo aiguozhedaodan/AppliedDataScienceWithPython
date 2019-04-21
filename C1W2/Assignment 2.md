@@ -35,3 +35,40 @@ df.head()
 |Algeria|	12|	5|	2|	8	|15|	3	|0	|0	|0	|0	|15|	5	|2	|8	|15|	ALG|
 |Argentina	|23|	18|	24	|28	|70	|18	|0|	0	|0|	0|41|	18|24|28|70|	ARG|
 |Armenia	|5	|1	|2	|9	|12|	6	|0	|0	|0	|0	|11	|1	|2|	9	|12|	ARM|
+### Question 0 (Example)
+
+What is the first country in df?
+
+*This function should return a Series.*
+```html
+# You should write your whole answer within the function provided. The autograder will call
+# this function and compare the return value against the correct solution value
+def answer_zero():
+    # This function returns the row for Afghanistan, which is a Series object. The assignment
+    # question description will tell you the general format the autograder is expecting
+    return df.iloc[0]
+
+# You can examine what your function returns by calling it in the cell. If you have questions
+# about the assignment formats, check out the discussion forums for any FAQs
+answer_zero()
+```
+```html
+Out[2]:
+# Summer           13
+Gold                0
+Silver              0
+Bronze              2
+Total               2
+# Winter            0
+Gold.1              0
+Silver.1            0
+Bronze.1            0
+Total.1             0
+# Games            13
+Gold.2              0
+Silver.2            0
+Bronze.2            2
+Combined total      2
+ID                AFG
+Name: Afghanistan, dtype: object
+```
