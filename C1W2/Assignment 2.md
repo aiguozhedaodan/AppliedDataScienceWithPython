@@ -234,13 +234,15 @@ def answer_eight():
     return region.loc[(region['name']==1) & (region['POPESTIMATE2015']> region['POPESTIMATE2014']),['STNAME','CTYNAME']].sort_index()
 ```
 Out[]:
-|            STNAME |           CTYNAME|
+
+||            STNAME |           CTYNAME|
 | --- | --- | --- |
 |896|           Iowa|  Washington County|
 |1419|     Minnesota|  Washington County|
 |2345|  Pennsylvania|  Washington County|
 |2355|  Rhode Island|  Washington County|
 |3163|     Wisconsin|  Washington County|
+
 ## My Notes
 ### Q1  
 df=DataFrame([{‘A’:’11’,’B’:’12’},{‘A’:’111’,’B’:’121’},{‘A’:’1111’,’B’:’1211’}])  
