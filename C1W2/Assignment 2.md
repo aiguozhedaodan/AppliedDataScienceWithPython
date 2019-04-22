@@ -115,6 +115,7 @@ def answer_four():
     return df['point']
 ```
 Out[]:
+```html
 Afghanistan                            2
 Algeria                               27
 Argentina                            130
@@ -177,6 +178,7 @@ Zambia                                 3
 Zimbabwe                              18
 Mixed team                            38
 Name: point, Length: 146, dtype: int64
+```
 ## Part 2
 For the next set of questions, we will be using census data from the [United States Census Bureau](http://www.census.gov). Counties are political and geographic subdivisions of states in the United States. This dataset contains population data for counties and states in the US from 2010 to 2015. [See this document](https://www2.census.gov/programs-surveys/popest/technical-documentation/file-layouts/2010-2015/co-est2015-alldata.pdf) for a description of the variable names.
 
