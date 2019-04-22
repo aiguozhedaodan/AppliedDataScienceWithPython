@@ -204,6 +204,42 @@ def answer_six():
     df4=df3.groupby(by='STNAME').sum().sort_values('CENSUS2010POP',ascending=False)[0:3]
     return list(df4.index)
 ```
+Out[]: ['California', 'Texas', 'Illinois']
+### Question 7
+Which county has had the largest absolute change in population within the period 2010-2015? (Hint: population values are stored in columns POPESTIMATE2010 through POPESTIMATE2015, you need to consider all six columns.)
+
+e.g. If County Population in the 5 year period is 100, 120, 80, 105, 100, 130, then its largest change in the period would be |130-80| = 50.
+
+*This function should return a single string value.*
+```html
+def answer_seven():
+    census_df2=census_df[census_df['SUMLEV']==50]
+    pop=census_df2[['POPESTIMATE2010','POPESTIMATE2011','POPESTIMATE2012','POPESTIMATE2013','POPESTIMATE2014','POPESTIMATE2015','CTYNAME']].set_index('CTYNAME')
+    pop['minus']=pop.T.max()-pop.T.min()
+    return pop.sort_values('minus').index.values[-1]
+```
+Out[]: 'Harris County'
+### Question 8
+In this datafile, the United States is broken up into four regions using the "REGION" column.
+
+Create a query that finds the counties that belong to regions 1 or 2, whose name starts with 'Washington', and whose POPESTIMATE2015 was greater than their POPESTIMATE 2014.
+
+*This function should return a 5x2 DataFrame with the columns = ['STNAME', 'CTYNAME'] and the same index ID as the census_df (sorted ascending by index).*
+
+```html
+def answer_eight():
+    census_df2=census_df[census_df['SUMLEV']==50]
+    region=census_df2[(census_df2['REGION']==1) | (census_df2['REGION']==2)].loc[:,['REGION','CTYNAME','STNAME','POPESTIMATE2015','POPESTIMATE2014']]
+    region['name']=region['CTYNAME'].str.startswith('Washington')
+    return region.loc[(region['name']==1) & (region['POPESTIMATE2015']> region['POPESTIMATE2014']),['STNAME','CTYNAME']].sort_index()
+```
+Out[]:
+            STNAME            CTYNAME
+896           Iowa  Washington County
+1419     Minnesota  Washington County
+2345  Pennsylvania  Washington County
+2355  Rhode Island  Washington County
+3163     Wisconsin  Washington County
 ## My Notes
 ### Q1  
 df=DataFrame([{‘A’:’11’,’B’:’12’},{‘A’:’111’,’B’:’121’},{‘A’:’1111’,’B’:’1211’}])  
@@ -216,3 +252,5 @@ print df.ix[[1]].values[0][1]#第二行第二列的值 121
 SUMLEV的值为40的行是州（STATE）的观测资料，SUMLEV的值为50的行是郡（COUNTY）的观测资料
 ### Question 6
 df3=census_df2[['STNAME','CTYNAME','CENSUS2010POP']].sort_values('CENSUS2010POP',ascending=False).groupby(by='STNAME').head(3) # One STATE only have three most population country in df3 在df3中一个州只有三个人数最多的郡，groupby后执行的指令是按照group分组执行。同理groupby(by='STNAME').sum()，求和也是分组进行。
+### Question 8
+The return of 'str.startswith('Washington')' is boolean. Ture means 1 and False means 0.
