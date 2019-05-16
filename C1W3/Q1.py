@@ -30,3 +30,5 @@ def answer_one():
     new=pd.merge(new,GDP,how="inner",left_on="Country",right_on="Country Name")
     return new.set_index("Country").drop("Country Name",axis=1)
 answer_one()
+
+##pd.set_option('display.max_columns',10) change how many columns shows on screen
